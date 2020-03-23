@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="PictureManager.View.AddImageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PictureManager.View"
+             xmlns:viewModel="clr-namespace:PictureManager.ViewModel"
+             xmlns:vml="clr-namespace:PictureManager.VML"
+             vml:ViewModelLocator.AutoHookedUpViewModel="true"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:AddImageViewModel/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Width="250"
+                   Height="200"
+                   Source="{Binding NewImage.ImagePath}"/>
+
+            <Button Grid.Row="1"
+                    Width="100"
+                    Content="Open Image"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Margin="7"
+                    Height="25"
+                    Background="#FF13294D"
+                    Foreground="White"
+                    BorderBrush="Transparent"
+                    Command="{Binding ChoseImage}"/>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                
+                <Label Content="Title:"
+                       Margin="10,0"
+                       Foreground="White"
+                       FontSize="20"/>
+
+                <TextBox Width="200"
+                         Height="25"
+                         Margin="5,0"
+                         FontSize="18"
+                         Text="{Binding NewImage.Title, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+
+                <Label Content="Description:"
+                       Margin="10,0"
+                       Foreground="White"
+                       FontSize="20"/>
+
+                <TextBox Width="250"
+                         Height="70"
+                         Margin="5"
+                         FontSize="18"
+                         TextWrapping="Wrap"
+                         Text="{Binding NewImage.Description, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <TextBlock Grid.ColumnSpan="2"
+                       Grid.Row="4"
+                       Text="{Binding NewImage.ValidationErrors[Title]}"
+                       Foreground="Red"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="20"/>
+
+            <TextBlock Grid.ColumnSpan="2"
+                       Grid.Row="4"
+                       Text="{Binding NewImage.ValidationErrors[ImagePath]}"
+                       Foreground="Red"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="20"/>
+
+            <TextBlock Grid.ColumnSpan="2"
+                       Grid.Row="4"
+                       Text="{Binding Info}"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="20"/>
+            
+            <Button Grid.Row="5"
+                    Content="Add Image"
+                    FontWeight="Bold"
+                    FontSize="15"
+                    Width="100"
+                    Height="25"
+                    Margin="55,5"
+                    HorizontalAlignment="Right"
+                    Background="#FF13294D"
+                    Foreground="White"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddImage}"/>
+        </Grid>
+    </Grid>
+</UserControl>
